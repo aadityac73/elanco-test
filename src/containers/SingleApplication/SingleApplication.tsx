@@ -41,7 +41,7 @@ const SingleApplication = () => {
 
   return (
     <div>
-      <h1 className="pageH1">{params.name}</h1>
+      <h1 className="pageH1">Resources</h1>
       {loading ? (
         <Loader />
       ) : (
