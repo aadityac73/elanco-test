@@ -5,8 +5,8 @@ const SingleResource = () => {
   const params = useParams();
   return (
     <div>
-      <h1 className='pageH1'>{params.name?.replace(/-/g, ' ')}</h1>
-      <DataTable sourceName={params.name} from="resource" />;
+      <h1 className='pageH1'>{params.resource}</h1>
+      <DataTable applicationName={params.name} resourceName={params.resource} from='application' />
     </div>
   );
 };

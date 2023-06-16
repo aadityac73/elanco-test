@@ -1,35 +1,34 @@
-import { useState, useEffect } from 'react';
-import api from '../../main-app/http/api';
-import AppGrid from '../../components/AppsGrid/AppsGrid';
-import Loader from '../../components/Loader/Loader';
+// import { useState, useEffect } from 'react';
+// import api from '../../main-app/http/api';
+// import AppGrid from '../../components/AppsGrid/AppsGrid';
+// import Loader from '../../components/Loader/Loader';
 
 const Applications = () => {
-  const [appsData, setAppsData] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [appsData, setAppsData] = useState<string[]>([]);
+  // const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const getApps = async () => {
-      setLoading(true);
-      const res = await api.getApplications();
-      if (res.isError) {
-        setLoading(false);
-        setError(res.getError());
-      } else {
-        setLoading(false);
-        setAppsData(res?.getValue());
-      }
-    };
-    getApps();
-  }, []);
+  // useEffect(() => {
+  //   const getApps = async () => {
+  //     setLoading(true);
+  //     const res = await api.getApplications();
+  //     if (res.isError) {
+  //       setLoading(false);
+  //       console.log(res?.getError());
+  //     } else {
+  //       setLoading(false);
+  //       setAppsData(res?.getValue());
+  //     }
+  //   };
+  //   getApps();
+  // }, []);
   return (
     <>
       <h1 className="pageH1">All Applications</h1>
-      {loading ? (
+      {/* {loading ? (
         <Loader />
       ) : (
         <AppGrid apiUrl="/applications" data={appsData} />
-      )}
+      )} */}
     </>
   );
 };

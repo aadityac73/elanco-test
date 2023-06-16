@@ -1,6 +1,6 @@
-import Applications from '../containers/Applications/Applications';
+// import Applications from '../containers/Applications/Applications';
 import Homepage from '../containers/Homepage/Homepage';
-import Resources from '../containers/Resources/Resources';
+// import Resources from '../containers/Resources/Resources';
 import SingleApplication from '../containers/SingleApplication/SingleApplication';
 import SingleResource from '../containers/SingleResource/SingleResource';
 
@@ -14,28 +14,28 @@ interface RouteType {
 const routes: RouteType[] = [
   {
     id: 1,
-    index: true,
     element: <Homepage />,
     path: '/'
   },
-  {
-    id: 2,
-    path: 'applications',
-    element: <Applications />
-  },
-  {
-    id: 3,
-    path: 'resources',
-    element: <Resources />
-  },
+  // {
+  //   id: 2,
+  //   path: 'applications',
+  //   element: <Applications />
+  // },
+  // {
+  //   id: 3,
+  //   path: 'resources',
+  //   element: <Resources />
+  // },
   {
     id: 4,
     path: 'applications/:name',
-    element: <SingleApplication />
+    element: <SingleApplication />,
+    index: true
   },
   {
     id: 5,
-    path: 'resources/:name',
+    path: 'applications/:name/:resource',
     element: <SingleResource />
   }
 ];

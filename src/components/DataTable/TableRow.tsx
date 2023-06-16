@@ -89,13 +89,12 @@ const TableRow: React.FC<RawData> = (props) => {
   return (
     <>
       <tr>
+        <td>{props?.InstanceId}</td>
+        <td>{props?.Date}</td>
+        <td>{props?.ResourceLocation}</td>
+        <td>{props?.ServiceName}</td>
         <td>{props?.ConsumedQuantity}</td>
         <td>{props?.Cost}</td>
-        <td>{props?.Date}</td>
-        <td>{props?.MeterCategory}</td>
-        <td>{props?.ResourceGroup}</td>
-        <td>{props?.UnitOfMeasure}</td>
-        <td>{props?.ServiceName}</td>
         <td><span onClick={openDialog} className={styles.viewBtn}>View</span></td>
       </tr>
       {dialog && <Dialog handleClose={closeDialog} data={props} />}
