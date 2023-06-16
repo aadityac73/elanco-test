@@ -1,12 +1,7 @@
-import DataTable from '../../components/DataTable/DataTable';
+import { Navigate } from 'react-router-dom';
 
 const Homepage = () => {
-  return (
-    <div>
-      <h1 className='pageH1'>All Instances</h1>
-      <DataTable from="home" sourceName="" />;
-    </div>
-  );
+  return <Navigate to={'applications/Macao'} />;
 };
 
 export default Homepage;

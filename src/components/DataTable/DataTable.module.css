@@ -125,6 +125,10 @@
   font-weight: 600;
 }
 
+.dataNotPresent td {
+  text-align: center;
+}
+
 @media (width < 500px) {
   .dialog .dialogGrid {
     font-size: 0.7rem;

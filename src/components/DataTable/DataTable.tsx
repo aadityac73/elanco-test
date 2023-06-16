@@ -7,41 +7,44 @@ import Loader from '../Loader/Loader';
 
 interface DataTableProps {
   from: 'home' | 'application' | 'resource';
-  sourceName: string | undefined;
+  applicationName: string | undefined;
+  resourceName?: string | undefined;
 }
 
 const DataTable: React.FC<DataTableProps> = ({
   from = 'home',
-  sourceName = ''
+  applicationName = '',
+  resourceName = ''
 }) => {
-  const [data, setData] = useState<RawData[]>([]);
+  const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [isAsc, setIsAsc] = useState(false);
   const [search, setSearch] = useState('');
   const searchParams = ['Date', 'Cost', 'MeterCategory', 'ResourceGroup'];
-  const sortData = (field: keyof RawDataSingle, type = 'string') => () => {
-    setData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData));
-      return newData.sort((a: RawDataSingle, b: RawDataSingle) => {
-        let fa = type == 'number' ? Number(a[field]) : a[field];
-        let fb = type == 'number' ? Number(b[field]) : b[field];
-        if (fa < fb) {
-          return isAsc ? 1 : -1;
-        }
-        if (fa > fb) {
-          return isAsc ? -1 : 1;
-        }
-        return 0;
+  const sortData =
+    (field: keyof RawDataSingle, type = 'string') =>
+    () => {
+      setData((prevData: any) => {
+        const newData = JSON.parse(JSON.stringify(prevData));
+        return newData.sort((a: RawDataSingle, b: RawDataSingle) => {
+          let fa: any = type == 'number' ? Number(a[field]) : a[field];
+          let fb: any = type == 'number' ? Number(b[field]) : b[field];
+          if (fa < fb) {
+            return isAsc ? 1 : -1;
+          }
+          if (fa > fb) {
+            return isAsc ? -1 : 1;
+          }
+          return 0;
+        });
       });
-    });
-    setIsAsc((prev) => !prev);
-  };
+      setIsAsc((prev) => !prev);
+    };
 
   const tempData: RawData[] =
     search.length > 0
-      ? data.filter((item: RawData) => {
-          return searchParams.some((newItem) => {
+      ? data.filter((item: any) => {
+          return searchParams.some((newItem: any) => {
             return (
               item[newItem]
                 .toString()
@@ -55,25 +58,30 @@ const DataTable: React.FC<DataTableProps> = ({
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      let res;
+      let res: any;
       if (from == 'home') {
-        res = await api.getRawData();
+        res = await api.getApplicationData('Macao');
       } else if (from == 'application') {
-        res = await api.getApplicationData(sourceName);
-      } else if (from == 'resource') {
-        res = await api.getResourceData(sourceName);
+        res = await api.getApplicationData(applicationName);
       }
       if (res?.isError) {
         setLoading(false);
-
-        setError(res.getError());
+        console.log(res?.getError());
       } else {
         setLoading(false);
-        setData(res?.getValue().slice(0, 100));
+        setData(() => {
+          if (resourceName != '') {
+            return res?.getValue()?.filter((item: any) => {
+              return item.ServiceName == resourceName;
+            });
+          }
+          return res?.getValue();
+        });
       }
     };
     getData();
   }, []);
+
   return (
     <>
       {loading ? (
@@ -91,28 +99,38 @@ const DataTable: React.FC<DataTableProps> = ({
             <table>
               <thead>
                 <tr>
-                  <th>
-                    Consumed <br /> Quantity
-                  </th>
-                  <th>
-                    Cost{' '}
-                    <span className="sortIcon" onClick={sortData('Cost', 'number')} />
-                  </th>
+                  <th>Instance ID</th>
                   <th>
                     Date{' '}
                     <span className="sortIcon" onClick={sortData('Date')} />
                   </th>
-                  <th>Meter Category</th>
-                  <th>Resource Group</th>
-                  <th>Unit Of Measure</th>
+                  <th>Location</th>
                   <th>Service Name</th>
+                  <th>Quantity</th>
+                  <th>
+                    Cost{' '}
+                    <span
+                      className="sortIcon"
+                      onClick={sortData('Cost', 'number')}
+                    />
+                  </th>
                   <th>View Details</th>
                 </tr>
               </thead>
               <tbody>
-                {(tempData.length > 0 ? tempData : data).map((item, idx) => {
-                  return <TableRow key={idx} {...item} />;
-                })}
+                {tempData.length == 0 && data.length == 0 ? (
+                  <tr className={styles.dataNotPresent}>
+                    <td colSpan={6}>Data not availabel</td>
+                  </tr>
+                ) : (
+                  <>
+                    {(tempData.length > 0 ? tempData : data).map(
+                      (item: any, idx: number) => {
+                        return <TableRow key={idx} {...item} />;
+                      }
+                    )}
+                  </>
+                )}
               </tbody>
             </table>
           </div>
