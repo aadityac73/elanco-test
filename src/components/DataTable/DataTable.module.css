@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: scroll;
+  height: 75vh;
+  margin: 20px;
+  width: calc(100% - 40px);
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 1px;
+  width: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--darkblue);
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--white);
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-wrapper table th,
+.table-wrapper table td {
+  padding: 10px;
+  min-width: 75px;
+  text-align: start;
+}
+
+/* .table-wrapper table td:last-child {
+    cursor: pointer;
+} */
+
+.table-wrapper table thead tr {
+  position: sticky;
+  top: 0;
+}
+
+.table-wrapper table th {
+  color: var(--white);
+  background: var(--darkblue);
+}
+
+.table-wrapper table tbody tr:nth-of-type(even) > * {
+  background: var(--lightblue);
+}
+
+.search {
+  margin: 20px;
+  margin-bottom: 0;
+  border: 2px solid var(--darkblue);
+  color: #323335;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.viewBtn {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+}
+
+.dialog .dialogBackdrop {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialog .dialogContainer {
+  padding: 3rem 4rem 3rem 4rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  position: absolute;
+  width: 70vw;
+  height: 70vh;
+  background-color: #fff;
+  border-radius: 0.4rem;
+}
+
+.dialog .dialogContainer .closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: 'Varela Round', sans-serif;
+  cursor: pointer;
+}
+
+.dialog .dialogGrid {
+  font-size: 1rem;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  margin-bottom: 4rem;
+}
+.dialog .instanceId {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.dialog .instanceId span {
+  font-weight: 600;
+}
+.dialog .dialogGrid .dialogGridItem div {
+  margin-top: 1.2rem;
+}
+.dialog .dialogGrid .dialogGridItem div span {
+  font-weight: 600;
+}
+
+@media (width < 500px) {
+  .dialog .dialogGrid {
+    font-size: 0.7rem;
+    grid-template-columns: 1fr;
+  }
+  .dialog .instanceId {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .dialog .dialogContainer {
+    width: 90vw;
+  height: 80vh;
+    padding: 1rem;
+  }
+  .dialog .dialogContainer .closeBtn {
+    top: .5rem;
+    right: .5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+  }
+}

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -7,12 +9,41 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --white: #fff;
+  --darkblue: #1b4965;
+  --lightblue: #edf2f4;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.pageH1 {
+  margin: 20px 0 0 20px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.sortIcon {
+  display: inline-block;
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.sortIcon::after, .sortIcon::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(-45deg);
+}
+
+.sortIcon::before {
+  transform: rotate(135deg) translateY(-14px);
 }
 
 

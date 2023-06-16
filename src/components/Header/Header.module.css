@@ -1,0 +1,76 @@
+.header {
+  font-family: 'Montserrat', sans-serif;
+  width: 100vw;
+  height: 80px;
+  background-color: black;
+  z-index: 1;
+  overflow-x: scroll;
+}
+
+.nav-container {
+  margin: 0 22px;
+  height: 100%;
+}
+
+.nav {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 20px;
+}
+
+.item a,
+.item .btn {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-bottom: 10px;
+}
+
+.item a.active {
+  border-bottom: 1px solid #ffffff;
+}
+
+.logo {
+  margin-right: 150px;
+}
+
+.logo a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.userIcon {
+  font-size: 15px;
+  margin-left: auto;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.logoutBtn {
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (width < 500px) {
+  .logo {
+    margin-right: 10px;
+  }
+
+  .item a,
+  .item .btn {
+    font-size: 12px;
+  }
+}
