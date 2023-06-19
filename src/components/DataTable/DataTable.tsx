@@ -14,18 +14,17 @@ const DataTable: React.FC<DataTableProps> = ({
   from = 'home',
   sourceName = ''
 }) => {
-  const [data, setData] = useState<RawData[]>([]);
+  const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [isAsc, setIsAsc] = useState(false);
   const [search, setSearch] = useState('');
   const searchParams = ['Date', 'Cost', 'MeterCategory', 'ResourceGroup'];
   const sortData = (field: keyof RawDataSingle, type = 'string') => () => {
-    setData((prevData) => {
+    setData((prevData:any) => {
       const newData = JSON.parse(JSON.stringify(prevData));
       return newData.sort((a: RawDataSingle, b: RawDataSingle) => {
-        let fa = type == 'number' ? Number(a[field]) : a[field];
-        let fb = type == 'number' ? Number(b[field]) : b[field];
+        let fa: any = type == 'number' ? Number(a[field]) : a[field];
+        let fb: any = type == 'number' ? Number(b[field]) : b[field];
         if (fa < fb) {
           return isAsc ? 1 : -1;
         }
@@ -40,8 +39,8 @@ const DataTable: React.FC<DataTableProps> = ({
 
   const tempData: RawData[] =
     search.length > 0
-      ? data.filter((item: RawData) => {
-          return searchParams.some((newItem) => {
+      ? data.filter((item:any) => {
+          return searchParams.some((newItem:any) => {
             return (
               item[newItem]
                 .toString()
@@ -66,7 +65,8 @@ const DataTable: React.FC<DataTableProps> = ({
       if (res?.isError) {
         setLoading(false);
 
-        setError(res.getError());
+        console.log(res.getError());
+        
       } else {
         setLoading(false);
         setData(res?.getValue().slice(0, 100));
@@ -110,7 +110,7 @@ const DataTable: React.FC<DataTableProps> = ({
                 </tr>
               </thead>
               <tbody>
-                {(tempData.length > 0 ? tempData : data).map((item, idx) => {
+                {(tempData.length > 0 ? tempData : data).map((item:any, idx:number) => {
                   return <TableRow key={idx} {...item} />;
                 })}
               </tbody>

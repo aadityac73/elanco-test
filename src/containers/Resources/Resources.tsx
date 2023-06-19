@@ -6,7 +6,6 @@ import Loader from '../../components/Loader/Loader';
 const Resources = () => {
   const [appsData, setAppsData] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getApps = async () => {
@@ -14,7 +13,7 @@ const Resources = () => {
       const res = await api.getResources();
       if (res.isError) {
         setLoading(false);
-        setError(res.getError());
+        console.log(res.getError());
       } else {
         setLoading(false);
         setAppsData(res?.getValue());
