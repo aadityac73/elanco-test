@@ -20,7 +20,7 @@ const DataTable: React.FC<DataTableProps> = ({
   const [loading, setLoading] = useState(false);
   const [isAsc, setIsAsc] = useState(false);
   const [search, setSearch] = useState('');
-  const searchParams = ['Date', 'Cost', 'MeterCategory', 'ResourceGroup'];
+  const searchParams = ['Date', 'Cost', 'InstanceId'];
   const sortData =
     (field: keyof RawDataSingle, type = 'string') =>
     () => {
