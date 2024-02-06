@@ -6,40 +6,67 @@
 }
 
 .appsContainer .cardContainer {
-  width: calc(100% / 3);
+  width: calc(100% / 4);
   padding: 1rem 1rem;
-  min-height: 200px;
 }
 
 .appsContainer .appCard {
-  padding: 0.7rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 3px;
   width: 100%;
   height: 100%;
   border: 1px solid #dcd9d9;
   display: block;
+  min-height: 220px;
+  transition: all 0.4s;
+}
+
+.appsContainer .appCard:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.appsContainer .appCard hr {
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+
+.appsContainer .appCard .cardTop {
+  min-height: 120px;
+}
+
+.appCard .appsCount {
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }
 
 .appCard .appTitle {
+  font-size: 1rem;
   font-weight: 500;
-  margin-top: 1rem;
-  padding-left: 1rem;
-  font-size: 1.2rem;
+  padding: 0 1rem;
   display: block;
   padding-bottom: 1.7rem;
-  border-bottom: 1px solid #dcd9d9;
+  color: #000;
+  text-decoration: none;
 }
 
 .appCard .appBtn {
+  display: block;
   color: #fff;
   text-decoration: none;
   background-color: var(--darkblue);
   padding: 0.5rem 1rem;
   border-radius: 1.5rem;
-  margin-top: 1.3rem;
-  float: right;
+  text-align: center;
+  margin: 1rem 0;
   transition: all ease-in 0.2s;
+  /* opacity: 0; */
 }
+
+/* .appsContainer .appCard:hover > .appBtn {
+  opacity: 1;
+} */
 
 .appCard .appBtn:hover {
   filter: brightness(70%);

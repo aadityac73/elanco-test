@@ -51,13 +51,33 @@
   background: var(--lightblue);
 }
 
-.search {
+.searchContainer {
+  position: relative;
   margin: 20px;
+  width: max-content;
+}
+  
+.searchContainer .search {
   margin-bottom: 0;
-  border: 2px solid var(--darkblue);
+  border: 2px solid rgb(184, 184, 184);
   color: #323335;
-  font-size: 20px;
-  padding: 5px 10px;
+  font-size: 18px;
+  padding: 6px 40px 6px 10px;
+}
+
+.searchContainer .search:focus {
+  border-color: var(--darkblue);
+}
+
+.searchContainer .searchIcon {
+  color: rgb(184, 184, 184);
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+.searchContainer .search:focus + .searchIcon {
+  color: var(--darkblue);
 }
 
 .search:focus {

@@ -1,13 +1,25 @@
 .mainContainer {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
+  display: flex;
 }
 
-.sideBar {
-    background-color: #f5f5f5;
+.mainContainer .sideBar {
+  min-width: 280px;
+  max-width: 280px;
+  background-color: #f5f5f5;
+  transition: all 0.3s;
 }
 
-.sideBar, .outlet {
-    overflow-y: auto;
-    height: calc(100vh - 80px);
+.mainContainer .outlet {
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.mainContainer.sidebar_closed .sideBar {
+  margin-left: -280px;
+}
+
+.sideBar,
+.outlet {
+  overflow-y: auto;
+  height: calc(100vh - 80px);
 }

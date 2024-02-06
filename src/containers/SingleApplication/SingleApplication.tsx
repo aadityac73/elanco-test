@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import api, { RawData } from '../../main-app/http/api';
 import AppGrid from '../../components/AppsGrid/AppsGrid';
 import Loader from '../../components/Loader/Loader';
@@ -14,6 +14,7 @@ const SingleApplication = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const params = useParams();
+  const location = useLocation()
 
   useEffect(() => {
     const getData = async () => {
@@ -37,7 +38,7 @@ const SingleApplication = () => {
       }
     };
     getData();
-  }, []);
+  }, [location]);
 
   return (
     <div>

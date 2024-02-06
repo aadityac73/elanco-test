@@ -4,6 +4,7 @@
   height: 80px;
   background-color: black;
   z-index: 1;
+  color: #fff;
 }
 
 .nav-container {
@@ -16,6 +17,7 @@
   height: 100%;
   align-items: center;
   gap: 20px;
+  list-style: none;
 }
 
 .item a,
@@ -33,7 +35,7 @@
 }
 
 .logo {
-  margin-right: 150px;
+  margin-right: 20px;
 }
 
 .logo a {
@@ -68,17 +70,17 @@
   color: #fff;
   border: 2px solid #fff;
   border-radius: 1.4rem;
-  padding: .6rem 1.7rem;
-  font-size: 1.2rem;
-  letter-spacing: .1rem;
+  padding: 0.5rem 1.7rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
   cursor: pointer;
 }
 
 .appsBtn button::after {
   content: ' ';
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
   border-top: 3px solid #fff;
   border-right: 3px solid #fff;
   transform-origin: center;
@@ -99,7 +101,7 @@
 }
 
 .dialog .dialogContainer {
-  padding: 3rem 0;
+  padding: 0.9rem 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -111,18 +113,34 @@
   border-radius: 0.2rem;
 }
 
+.dialog .dialogContainer .dialogHeader .dialogTitle {
+  padding-left: 3rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-top: none;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog .dialogContainer .dialogHeader .dialogTitle span {
+  display: block;
+}
+
 .dialog .dialogContainer .closeBtn {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
   font-size: 1.6rem;
   font-weight: bold;
   font-family: 'Varela Round', sans-serif;
   cursor: pointer;
+  padding-right: 1rem;
+  margin-top: -5px;
 }
 
 .dialog .dialogData {
-  height: 100%;
+  height: 70%;
   overflow-y: auto;
 }
 
@@ -140,25 +158,130 @@
 }
 
 .dialog .dialogData ul li {
-  border-bottom: 1px solid #a3a3a3;
-  padding: .5rem 0;
+  border-top: 1px solid #a3a3a3;
+  color: #323335;
+  padding: 0.5rem 0;
   padding-left: 3rem;
+  transition: all 0.2s;
+  cursor: pointer;
 }
-
 
 .dialog .dialogData ul li span {
   cursor: pointer;
 }
 
-.dialog .dialogData ul li span:hover {
-  border-bottom: 1px solid black;
+.dialog .dialogData ul li:hover {
+  background-color: #e7e7e7;
 }
 
-.dialog .dialogData ul li:first-child {
-  font-size: 1.3rem;
-  font-weight: 600;
+.dialog .dialogData ul li.current {
+  background-color: #e7e7e7;
 }
 
+.dialog .dialogData ul li:last-child {
+  border-bottom: 1px solid #a3a3a3;
+  margin-bottom: 1rem;
+}
+
+.dialog .dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.dialog .dialogActions button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  padding: 0 16px;
+  min-width: 64px;
+  height: 36px;
+  vertical-align: middle;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+  background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  font-family: var(
+    --pure-material-font,
+    'Roboto',
+    'Segoe UI',
+    BlinkMacSystemFont,
+    system-ui,
+    -apple-system
+  );
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.dialog .dialogActions button:disabled {
+  filter: brightness(70%);
+}
+
+.dialog .dialogActions button:hover:not(:disabled) {
+  filter: brightness(105%);
+}
+
+.dialog .dialogActions button:disabled {
+  cursor: not-allowed;
+}
+
+.dialog .dialogActions button.cancelBtn {
+  background-color: rgb(223, 223, 223);
+  color: black;
+  margin-right: .5rem;
+}
+
+.dialog .searchContainer {
+  padding-left: 1.7rem;
+  position: relative;
+  margin: 20px;
+  margin-top: 0;
+  width: max-content;
+}
+  
+.dialog .searchContainer .search {
+  margin-bottom: 0;
+  border: 2px solid rgb(184, 184, 184);
+  color: #323335;
+  font-size: 18px;
+  padding: 6px 40px 6px 10px;
+}
+
+.dialog .searchContainer .search:focus {
+  border-color: var(--darkblue);
+}
+
+.dialog .searchContainer .searchIcon {
+  color: rgb(184, 184, 184);
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+.dialog .searchContainer .search:focus + .searchIcon {
+  color: var(--darkblue);
+}
+
+.dialog .search:focus {
+  outline: none;
+}
+
+.hamburger {
+  padding-top: 6px;
+  cursor: pointer;
+}
 
 @media (width < 500px) {
   .header {

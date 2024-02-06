@@ -4,6 +4,9 @@ import api from '../../main-app/http/api';
 import styles from './DataTable.module.css';
 import TableRow from './TableRow';
 import Loader from '../Loader/Loader';
+import { useLocation } from 'react-router-dom';
+import Search from '../../icons/Search';
+import { useDebounce } from '../../hooks/useDebounce';
 
 interface DataTableProps {
   from: 'home' | 'application' | 'resource';
@@ -21,6 +24,7 @@ const DataTable: React.FC<DataTableProps> = ({
   const [isAsc, setIsAsc] = useState(false);
   const [search, setSearch] = useState('');
   const searchParams = ['Date', 'Cost', 'InstanceId'];
+  const location = useLocation();
   const sortData =
     (field: keyof RawDataSingle, type = 'string') =>
     () => {
@@ -80,7 +84,13 @@ const DataTable: React.FC<DataTableProps> = ({
       }
     };
     getData();
-  }, []);
+  }, [location]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const debouncedSearch = useDebounce(handleSearchChange, 500)
 
   return (
     <>
@@ -88,13 +98,19 @@ const DataTable: React.FC<DataTableProps> = ({
         <Loader />
       ) : (
         <>
-          <input
-            type="text"
-            placeholder="Search"
-            autoFocus
-            className={styles.search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className={styles.searchContainer}>
+            <input
+              type="text"
+              placeholder="Search"
+              autoFocus
+              className={styles.search}
+              onChange={debouncedSearch}
+            />
+            <span className={styles.searchIcon}>
+              <Search />
+            </span>
+          </div>
+
           <div className={styles['table-wrapper']}>
             <table>
               <thead>
@@ -124,7 +140,7 @@ const DataTable: React.FC<DataTableProps> = ({
                   </tr>
                 ) : (
                   <>
-                    {(tempData.length > 0 ? tempData : data).map(
+                    {(search.length > 0 ? tempData : data).map(
                       (item: any, idx: number) => {
                         return <TableRow key={idx} {...item} />;
                       }

@@ -35,7 +35,7 @@ const SideBar = () => {
                 : styles.link
             }
           >
-            <Link reloadDocument to={`/applications/${params.name}`}>
+            <Link to={`/applications/${params.name}`}>
               Dashboard
             </Link>
           </li>
@@ -50,7 +50,6 @@ const SideBar = () => {
                 }
               >
                 <Link
-                  reloadDocument
                   to={`/applications/${params.name}/${item}`}
                   key={item}
                 >
